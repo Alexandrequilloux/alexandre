@@ -19,7 +19,7 @@
        document.body.appendChild(renderer.domElement);
        // Charger le modèle .dn
        var loader = new THREE.DNLoader();
-       loader.load('scene.dn', function (geometry) {
+       loader.load('scene.gltf', function (geometry) {
            var material = new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true });
            var model = new THREE.Mesh(geometry, material);
            scene.add(model);
