@@ -3,40 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualisation 3D</title>
-<script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@<version>/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
-    }
-  }
-</script>
+    <title>Document</title>
 </head>
 <body>
-    <script>
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    <div class="header ">
+        <h1>BookMarks New Arrival</h1>
+        
+    </div>
 
-        var loader = new THREE.GLTFLoader();
-        loader.load('./scene.gltf', function (gltf) {
-            scene.add(gltf.scene);
-        });
+    <div class="tools ">
+        <div class="GLPI ">
+            <h1> <a href="http://glpi-network.bel.volvo.net:81/front/central.php">GLPI</a></h1>
+            <p>
+                GLPI est un site web qui permet principalement de réaliser des tickets pour le Service Informatique. <br/>
+                <a href="ticket-glpi.html">Comment faire un ticket GLPI</a>
+            </p>
+        </div>
 
-        var animate = function () {
-            requestAnimationFrame(animate);
-            if (scene.children.length > 0) {
-                scene.children[0].rotation.x += 0.005;
-                scene.children[0].rotation.y += 0.005;
-            }
-            renderer.render(scene, camera);
-        };
+        <div class="UKG ">
+            <h1> <a href="https://secure.workforceready.eu/ta/6135485.login?rnd=XPL&%40rtm=1">UKG</a></h1>
+         <p>UKG est un site web qui permet de regarder son nombre d'heure réalisé, ses soldes de congés payés,RTT,...Egalement de poser ses jours, pointer lors de l'oublie d'un pointage aux bornes,..
+            <a href="pointage.html">Comment pointer sur UKG</a>
+            <a href="solde.html">Comment regarder son solde de jour</a>
+            <a href="poserjour.html">Comment poser des jours</a>
+        </p>   
+        </div>
 
-        animate();
-    </script>
+        <div class="ServiceNow ">
+            <h1> <a href="https://volvoitsm.service-now.com/sp?id=index">ServiceNow</a></h1>
+        <p>
+            ServiceNow est un site web qui permet de réaliser diverses demande avec notre groupe de service informatique HCL
+            <a href="requestSN.html">Comment faire une demande dans ServiceNow</a>
+        </p>
+
+        </div>
+
+        <div class="SharePoint ">
+            <h1><a href="https://volvogroup.sharepoint.com/SitePages/fr/Start.aspx">SharePoint</a></h1>
+            <p>
+                SharePoint est un outil crée par Microsoft qui permet de faire une page web, elle permet aussi de partager avec un groupe et de pouvoir accéder à des fichiers partagés,..
+                <a href="accessharepoint.html">Comment accéder à un SharePoint</a>
+                <a href="deposerfichiers.html">Comment déposer des fichiers sur un SharePoint</a>
+            </p>
+        </div>
+        
+    </div>
+
 </body>
 </html>
