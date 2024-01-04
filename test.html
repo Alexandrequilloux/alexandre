@@ -17,7 +17,7 @@
        renderer.setSize(window.innerWidth, window.innerHeight);
        document.body.appendChild(renderer.domElement);
        var loader = new THREE.GLTFLoader();
-       loader.load('ton_modele.gltf', function (gltf) {
+       loader.load('scene.gltf', function (gltf) {
            scene.add(gltf.scene);
        });
        function animate() {
