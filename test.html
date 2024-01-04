@@ -4,39 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisation 3D</title>
-    <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@<version>/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
-    }
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
 </head>
 <body>
-    <script>
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        var loader = new THREE.GLTFLoader();
-        loader.load('./scene.gltf', function (gltf) {
-            scene.add(gltf.scene);
-        });
-
-        var animate = function () {
-            requestAnimationFrame(animate);
-            if (scene.children.length > 0) {
-                scene.children[0].rotation.x += 0.005;
-                scene.children[0].rotation.y += 0.005;
-            }
-            renderer.render(scene, camera);
-        };
-
-        animate();
-    </script>
+<script>
+       // Créer la scène
+       var scene = new THREE.Scene();
+       // Créer une caméra
+       var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+       camera.position.z = 5;
+       // Créer un renderer
+       var renderer = new THREE.WebGLRenderer();
+       renderer.setSize(window.innerWidth, window.innerHeight);
+       document.body.appendChild(renderer.domElement);
+       // Charger le modèle .dn
+       var loader = new THREE.DNLoader();
+       loader.load('scene.dn', function (geometry) {
+           var material = new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true });
+           var model = new THREE.Mesh(geometry, material);
+           scene.add(model);
+       });
+       // Fonction pour mettre à jour la scène
+       function animate() {
+           requestAnimationFrame(animate);
+           renderer.render(scene, camera);
+       }
+       animate();
+</script>
 </body>
 </html>
