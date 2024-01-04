@@ -18,6 +18,7 @@
        document.body.appendChild(renderer.domElement);
        var loader = new THREE.GLTFLoader();
        loader.load('scene.gltf', function (gltf) {
+           gltf.scene.scale.set(0.1, 0.1, 0.1); // Ajuste la mise à l'échelle du modèle
            scene.add(gltf.scene);
        });
        function animate() {
