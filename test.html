@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisation 3D</title>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Utilisez une URL valide pour GLTFLoader.js ou téléchargez le fichier localement -->
+    <script src="https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/GLTFLoader.js"></script>
 </head>
 <body>
     <script>
@@ -16,21 +17,26 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        var loader = new THREE.GLTFLoader();
-        loader.load('GlaxyS10.gltf', function (gltf) {
-            scene.add(gltf.scene);
-        });
+        // Vérifiez que GLTFLoader est correctement chargé
+        if (THREE.GLTFLoader) {
+            var loader = new THREE.GLTFLoader();
+            loader.load('GalaxyS10.gltf', function (gltf) {
+                scene.add(gltf.scene);
+            });
 
-        var animate = function () {
-            requestAnimationFrame(animate);
-            if (scene.children.length > 0) {
-                scene.children[0].rotation.x += 0.005;
-                scene.children[0].rotation.y += 0.005;
-            }
-            renderer.render(scene, camera);
-        };
+            var animate = function () {
+                requestAnimationFrame(animate);
+                if (scene.children.length > 0) {
+                    scene.children[0].rotation.x += 0.005;
+                    scene.children[0].rotation.y += 0.005;
+                }
+                renderer.render(scene, camera);
+            };
 
-        animate();
+            animate();
+        } else {
+            console.error("THREE.GLTFLoader is not available.");
+        }
     </script>
 </body>
 </html>
