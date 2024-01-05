@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisation 3D</title>
-<script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/browse/three@0.160.0/examples/jsm/"
-    }
-  }
-</script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/browse/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
 </head>
 <body>
-    <script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
@@ -22,26 +25,22 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Vérifiez que GLTFLoader est correctement chargé
-        if (THREE.GLTFLoader) {
-            var loader = new THREE.GLTFLoader();
-            loader.load('GalaxyS10.gltf', function (gltf) {
-                scene.add(gltf.scene);
-            });
+        // Utilisation de GLTFLoader
+        var loader = new GLTFLoader();
+        loader.load('GalaxyS10.gltf', function (gltf) {
+            scene.add(gltf.scene);
+        });
 
-            var animate = function () {
-                requestAnimationFrame(animate);
-                if (scene.children.length > 0) {
-                    scene.children[0].rotation.x += 0.005;
-                    scene.children[0].rotation.y += 0.005;
-                }
-                renderer.render(scene, camera);
-            };
+        var animate = function () {
+            requestAnimationFrame(animate);
+            if (scene.children.length > 0) {
+                scene.children[0].rotation.x += 0.005;
+                scene.children[0].rotation.y += 0.005;
+            }
+            renderer.render(scene, camera);
+        };
 
-            animate();
-        } else {
-            console.error("THREE.GLTFLoader is not available.");
-        }
+        animate();
     </script>
 </body>
 </html>
